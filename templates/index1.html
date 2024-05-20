@@ -25,6 +25,7 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
+            margin-bottom: 20px;
         }
         .control-buttons button {
             width: 100px;
@@ -40,6 +41,15 @@
         .control-buttons button:active {
             background-color: #0056b3;
         }
+        #terminal-output {
+            width: 640px;
+            height: 200px;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            overflow-y: auto;
+            font-family: monospace;
+        }
     </style>
 </head>
 <body>
@@ -51,6 +61,7 @@
         <button id="left" onmousedown="startMove('left')" onmouseup="stopMove()">Left</button>
         <button id="right" onmousedown="startMove('right')" onmouseup="stopMove()">Right</button>
     </div>
+    <div id="terminal-output"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         var keyInterval;
@@ -65,6 +76,18 @@
         function stopMove() {
             clearInterval(keyInterval);
             $.post('/stop');
+        }
+
+        // SSE for terminal output
+        if (!!window.EventSource) {
+            var source = new EventSource('/terminal_output');
+            source.onmessage = function (event) {
+                var terminalOutput = document.getElementById('terminal-output');
+                terminalOutput.innerHTML += event.data + '<br>';
+                terminalOutput.scrollTop = terminalOutput.scrollHeight;
+            };
+        } else {
+            console.log("Your browser doesn't support SSE");
         }
     </script>
 </body>
