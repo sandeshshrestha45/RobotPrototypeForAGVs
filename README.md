@@ -4,6 +4,6 @@ A prototype of forklift with semi automatic control. The forklift can be remotel
 
 ![Pi Forklift](https://github.com/sandeshshrestha45/RobotPrototypeForAGVs/assets/10694553/ea02808f-b9ae-4894-9ccb-bc7e3238c6ad) <br>
 
-more forklift features on the way.
+Run app.py 
 
 

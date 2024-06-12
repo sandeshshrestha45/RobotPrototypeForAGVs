@@ -4,11 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Robotic Vehicle Control</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        img {
+            margin-bottom: 20px;
+        }
+        .control-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .control-buttons button {
+            width: 100px;
+            height: 100px;
+            font-size: 24px;
+            border: none;
+            border-radius: 10px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .control-buttons button:active {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <h1>Robotic Vehicle Control</h1>
     <img src="{{ url_for('video_feed') }}" alt="Video Stream" width="640" height="480">
-    <div>
+    <div class="control-buttons">
         <button id="up" onmousedown="startMove('up')" onmouseup="stopMove()">Up</button>
         <button id="down" onmousedown="startMove('down')" onmouseup="stopMove()">Down</button>
         <button id="left" onmousedown="startMove('left')" onmouseup="stopMove()">Left</button>
